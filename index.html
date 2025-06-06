@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ripple Cursor Banner</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .banner {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: url("https://plus.unsplash.com/premium_photo-1749043321854-028dafe8ee55?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+          no-repeat center center/cover;
+        overflow: hidden;
+        cursor: none; /* Hide default cursor */
+      }
+
+      .ripple {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(0);
+        pointer-events: none;
+        animation: rippleAnim 0.6s ease-out;
+      }
+
+      @keyframes rippleAnim {
+        0% {
+          transform: scale(0);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(3);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner" id="banner"></div>
+
+    <script>
+      const banner = document.getElementById("banner");
+
+      banner.addEventListener("mousemove", (e) => {
+        const ripple = document.createElement("div");
+        ripple.classList.add("ripple");
+        ripple.style.left = `${e.clientX - banner.offsetLeft - 20}px`;
+        ripple.style.top = `${e.clientY - banner.offsetTop - 20}px`;
+        banner.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>

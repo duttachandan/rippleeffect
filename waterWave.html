@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Ripple Cursor Banner</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .banner {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: black;
+        /* no-repeat center center/cover; */
+        overflow: hidden;
+        cursor: none; /* Hide default cursor */
+      }
+
+      .ripple {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          transparent,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        transform: scale(0);
+        pointer-events: none;
+        animation: rippleFlash 0.9s ease-out; 
+      }
+
+      @keyframes rippleFlash {
+        0% {
+          transform: scale(0.2);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(2.5);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner" id="banner"></div>
+
+    <script>
+      const banner = document.getElementById("banner");
+      let lastRippleTime = 0;
+      const gapDelay = 150; // time between ripples
+
+      banner.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastRippleTime < gapDelay) return;
+        lastRippleTime = now;
+
+        const ripple = document.createElement("div");
+        ripple.classList.add("ripple");
+        ripple.style.left = `${e.clientX - banner.offsetLeft - 40}px`;
+        ripple.style.top = `${e.clientY - banner.offsetTop - 40}px`;
+        banner.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 900);
+      });
+    </script>
+  </body>
+</html>
