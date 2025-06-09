@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  position: relative;
+  height: 300px;
+  width: 250px;
+  border-radius: 20px;
+  background: no-repeat center/cover url("https://picsum.photos/300/400");
+}
+
+.card::after {
+  content: "";
+  height: 50px;
+  width: 50px;
+  background: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 10px;
+}
+
+.round {
+  height: 50px;
+  width: 50px;
+  border-right: 10px solid white;
+  border-radius: 10px;
+  position: absolute;
+  right: 50px;
+  box-shadow: 1.25rem -1.75rem 0 white;
+  border: 10px solid transparent;
+}
+
+.card::before {
+  content: "";
+  height: 45px;
+  width: 30px;
+  background: transparent;
+  box-shadow: 1.25rem -1.75rem 0 white;
+  border-top-right-radius: 10px;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  border: 10px solid transparent;
+}
+
+.icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: white;
+}
+
+.bottom-l-crn {
+  position: absolute;
+  bottom: 80px;
+  left: 0px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  box-shadow: -0.75rem 1.25rem 0 white;
+  border: 10px solid transparent;
+  border-radius: 10px;
+}
+
+.bottom-r-crn {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 80px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  box-shadow: -0.75rem 1.25rem 0 white;
+  border-radius: 10px;
+}
+
+.right-icon {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 8px 10px;
+  z-index: 999;
+  transform: rotate(324deg);
+}
+
+.left-icon {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  z-index: 999;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.left-icon > img {
+  height: 75px;
+  width: 75px;
+  object-fit:fill;
+  object-position: bottom;
+}
